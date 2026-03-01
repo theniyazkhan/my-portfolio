@@ -1,5 +1,39 @@
-# Vue 3 + Vite
+# Portfolio - Niyaz
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A modern portfolio website built with Vue 3 and Vite, showcasing projects, skills, and professional experience.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- ⚡ Fast development with Vite
+- 🎨 Modern Vue 3 composition with `<script setup>`
+- 📱 Responsive design
+- ✨ Smooth animations and transitions
+
+## Project Setup
+
+### Install dependencies
+```sh
+npm install
+```
+
+### Compile and hot-reload for development
+```sh
+npm run dev
+```
+
+### Compile and minify for production
+```sh
+npm run build
+```
+
+## Technology Stack
+
+- **Vue 3** - Progressive JavaScript framework
+- **Vite** - Next generation frontend tooling
+- **JavaScript (ES6+)** - Modern JavaScript
+
+## Learn More
+
+- [Vue 3 Documentation](https://vuejs.org/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Script Setup Guide](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup)
