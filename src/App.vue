@@ -3,6 +3,13 @@ import { ref, onMounted } from 'vue'
 
 const isDark = ref(false)
 
+// Mobile Menu State
+const isMobileMenuOpen = ref(false)
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
 // Optional: Check local storage or system preference on mount
 onMounted(() => {
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -91,9 +98,11 @@ const expertise = ref([
     
     <nav class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300 slide-down">
       <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer">
+        
+        <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent hover:scale-105 transition-transform cursor-pointer z-50">
           Niyaz Ahmad Khan
         </span>
+
         <div class="hidden md:flex items-center space-x-8 font-medium">
           <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">About</a>
           <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition">Skills</a>
@@ -109,6 +118,29 @@ const expertise = ref([
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </button>
+        </div>
+
+        <div class="md:hidden flex items-center space-x-4 z-50">
+          <button @click="toggleDarkMode" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300" aria-label="Toggle Dark Mode">
+            <svg v-if="!isDark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
+          </button>
+          
+          <button @click="toggleMobileMenu" class="text-slate-900 dark:text-white focus:outline-none p-2">
+            <svg v-if="!isMobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <div v-if="isMobileMenuOpen" class="md:hidden absolute top-16 left-0 w-full bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-xl slide-down">
+        <div class="px-6 py-6 flex flex-col space-y-6 text-center">
+          <a href="#about" @click="toggleMobileMenu" class="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">About</a>
+          <a href="#skills" @click="toggleMobileMenu" class="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">Skills</a>
+          <a href="#projects" @click="toggleMobileMenu" class="text-lg font-medium text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+          <a href="mailto:ahmadkhanniyaz@gmail.com" @click="toggleMobileMenu" class="bg-blue-600 dark:bg-blue-500 text-white px-5 py-3 rounded-xl hover:bg-blue-700 dark:hover:bg-blue-600 font-semibold shadow-md inline-block mx-auto w-full max-w-xs">
+            Hire Me
+          </a>
         </div>
       </div>
     </nav>
